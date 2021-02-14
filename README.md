@@ -147,6 +147,7 @@ These options set global values that some pages or all pages in the site use by 
 | baidu_analytics | string | no |
 | description | string | yes |
 | introDescription | string | no |
+| introURL | string/false | no |
 | numberOfTagsShown | integer | no |
 | fallBackOgImage | file path (string) | no |
 | codeMaxLines | integer | yes |
@@ -162,6 +163,7 @@ These options set global values that some pages or all pages in the site use by 
 | enforceLightMode | boolean | N/A |
 | enforceDarkMode | boolean | N/A |
 | titleSeparator| string | no |
+| showShare | boolean | yes |
 | comment | boolean | no |
 | numberOfRecentPosts | integer | no |
 | numberOfFeaturedPosts | integer | no |
@@ -198,6 +200,8 @@ These options can be set from a page [frontmatter](https://gohugo.io/content-man
 | enableMathNotation | boolean | yes |
 | showDate | boolean | N/A |
 | showShare | boolean | N/A |
+| sidebar | boolean | N/A |
+| singleColumn | boolean | N/A |
 
 ### Modify Menus
 
@@ -221,7 +225,7 @@ If using Baidu Analytics, configure the `baidu_analytics` global parameter in yo
 
 ### Blog directory
 
-Edit the `config.toml` file and change the `mainSections` key. Values will be directories where the blogs reside.
+Edit `config.toml` and change the `mainSections` key. Values will be directories where the blogs reside.
 
 ```yaml
 [params]
@@ -312,6 +316,27 @@ To align a blog image to the left, append `:left` to its alt text. Article text 
 <!-- some image with alt text -->
 
 ![some alt text:left](someOtherImageUrl)
+```
+
+#### Round borders for images
+
+To make the image borders round, append `::round` to its alt text. This is a
+pre-defined image class commonly used to display portrait images. Note that round
+is just another class and it can be mixed with other classes separated by space.
+
+#### Round borders for images example
+
+```markdown
+<!-- some image without alt text and round borders-->
+![::round](someImageUrl)
+
+<!-- some image with alt text and round borders-->
+
+![some alt text::round](someOtherImageUrl)
+
+<!-- some left floating image with round borders-->
+
+![:left::round](someOtherImageUrl)
 ```
 
 #### Add classes to images
@@ -558,7 +583,7 @@ Then add the corresponding line as its [README](https://github.com/KaTeX/KaTeX/t
 
 The added line should be _before_ `auto-render.min.js` and _after_ `katex.min.js`.
 
-#### If you want MathJax instead
+#### MathJax
 
 The new version of MathJax has [comparable performance](https://www.intmath.com/cg5/katex-mathjax-comparison.php?processor=MathJax3) to KaTeX and better support for TeX commands.
 
